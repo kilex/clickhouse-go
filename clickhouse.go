@@ -79,9 +79,9 @@ func (ch *clickhouse) prepareContext(ctx context.Context, query string) (driver.
 }
 
 func (ch *clickhouse) insert(query string) (_ driver.Stmt, err error) {
-	if err := ch.sendQuery(splitInsertRe.Split(query, -1)[0] + " VALUES "); err != nil {
-		return nil, err
-	}
+	// if err := ch.sendQuery(splitInsertRe.Split(query, -1)[0] + " VALUES "); err != nil {
+	// 	return nil, err
+	// }
 	if ch.block, err = ch.readMeta(); err != nil {
 		return nil, err
 	}
