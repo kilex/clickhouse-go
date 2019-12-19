@@ -69,9 +69,7 @@ func (ch *clickhouse) prepareContext(ctx context.Context, query string) (driver.
 	case ch.block != nil:
 		return nil, ErrLimitDataRequestInTx
 	case isInsert(query):
-		if !ch.inTransaction {
-			return nil, ErrInsertInNotBatchMode
-		}
+		return nil, ErrInsertInNotBatchMode
 		return ch.insert(query)
 	}
 	return &stmt{
